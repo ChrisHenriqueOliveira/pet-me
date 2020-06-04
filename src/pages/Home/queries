@@ -1,0 +1,141 @@
+import React, { useState, useEffect, useRef, useCallback } from 'react';
+
+import { FiArrowLeft, FiMail, FiUser, FiLock } from 'react-icons/fi';
+import { FormHandles, Scope } from '@unform/core';
+import { Form } from '@unform/web';
+import * as Yup from 'yup';
+import firebase from '../../services/db';
+import { Container, Content } from './styles';
+
+import Input from '../../components/Input';
+import Button from '../../components/Button';
+
+const SignIn: React.FC = () => {
+  const formRef = useRef<FormHandles>(null);
+
+  const [orders, setOrders] = useState<any[]>([]);
+
+  const leite = useCallback(async (data: any) => {
+    try {
+      firebase.database().ref('orders/3DgULFafYPi9pNFQkkIN').remove();
+    } catch (err) {
+      console.log(err);
+    }
+  }, []);
+
+  const batata = useCallback(async (data: any) => {
+    try {
+      console.log(data);
+      firebase.firestore().collection('orders').add({
+        order: data.order,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  }, []);
+
+  useEffect(() => {
+    firebase
+      .firestore()
+      .collection('orders')
+      .onSnapshot(snapshot => {
+        console.log(snapshot);
+
+        const ordersData = snapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+
+        setOrders(ordersData);
+        // console.log(ordersData);
+      });
+  }, []);
+
+  const tiposLanche = [
+    {
+      name: 'lanche1',
+      value: '10',
+    },
+    {
+      name: 'lanche2',
+      value: '14',
+    },
+    {
+      name: 'lanche3',
+      value: '15',
+    },
+    {
+      name: 'lanche4',
+      value: '22',
+    },
+    {
+      name: 'lanche5',
+      value: '53',
+    },
+  ];
+
+  const tiposAperitivo = [
+    {
+      name: 'aperitivo1',
+      value: '10',
+    },
+    {
+      name: 'aperitivo2',
+      value: '14',
+    },
+    {
+      name: 'aperitivo3',
+      value: '15',
+    },
+    {
+      name: 'aperitivo4',
+      value: '22',
+    },
+    {
+      name: 'aperitivo5',
+      value: '53',
+    },
+  ];
+
+  return (
+    <Container>
+      <Content>
+        <Form ref={formRef} onSubmit={leite}>
+          <h1>Faça seu cadastro</h1>
+
+          <Input name="name" icon={FiUser} placeholder="Nome" />
+
+          <Input name="email" icon={FiMail} placeholder="E-mail" />
+
+          <Scope path="order[food]">
+            {tiposLanche.map((item: any) => (
+              <>
+                <Input name={item.name} icon={FiMail} placeholder={item.name} />
+                <p>{item.value}</p>
+              </>
+            ))}
+          </Scope>
+
+          <Scope path="order[aperitivo]">
+            {tiposAperitivo.map((item: any) => (
+              <>
+                <Input name={item.name} icon={FiMail} placeholder={item.name} />
+                {/* <p>{item.value}</p> */}
+                <p>--------------------------------</p>
+              </>
+            ))}
+          </Scope>
+          {orders.map((item: any) => (
+            <>
+              <p key={item.id}>{item.id}</p>
+              <p>{item.a}</p>
+            </>
+          ))}
+          <Button type="submit">Cadastrar</Button>
+        </Form>
+      </Content>
+    </Container>
+  );
+};
+
+export default SignIn;
