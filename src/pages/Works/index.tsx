@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import Menu from '../../components/Menu';
 
@@ -23,7 +24,7 @@ const Works: React.FC = () => {
               Começe agora mesmo!
             </p>
             <div className="buttons">
-              <a href="google.com">Procurar</a>
+              <Link to="/search">Procurar</Link>
               <p>
                 ou <span>registrar meu pet</span>
               </p>

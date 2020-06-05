@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import Menu from '../../components/Menu';
 
@@ -20,7 +21,7 @@ const SignIn: React.FC = () => {
               cuidadores e torne-o seu novo amigo!
             </p>
             <div className="buttons">
-              <a href="google.com">Procurar</a>
+              <Link to="/search">Procurar</Link>
               <p>
                 ou <span>registrar meu pet</span>
               </p>
