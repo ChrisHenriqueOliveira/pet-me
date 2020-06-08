@@ -26,14 +26,14 @@ import {
   PetItem,
 } from './styles';
 
-interface Values {
+interface LocationProperties {
   id: string;
   nome: string;
 }
 
 const Search: React.FC = () => {
-  const [states, setStates] = useState<Values[]>([]);
-  const [cities, setCities] = useState<Values[]>([]);
+  const [states, setStates] = useState<LocationProperties[]>([]);
+  const [cities, setCities] = useState<LocationProperties[]>([]);
   const [pets, setPets] = useState('asds');
 
   const [selectedState, setSelectedState] = useState('');
@@ -138,7 +138,7 @@ const Search: React.FC = () => {
                 <MenuItem value="" disabled>
                   Estado
                 </MenuItem>
-                {states.map((state: Values) => (
+                {states.map((state: LocationProperties) => (
                   <MenuItem key={state.id} value={state.id}>
                     {state.nome}
                   </MenuItem>
@@ -153,7 +153,7 @@ const Search: React.FC = () => {
                 <MenuItem value="" disabled>
                   Cidade
                 </MenuItem>
-                {cities.map((city: Values) => (
+                {cities.map((city: LocationProperties) => (
                   <MenuItem key={city.id} value={city.id}>
                     {city.nome}
                   </MenuItem>

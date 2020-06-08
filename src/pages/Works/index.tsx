@@ -26,7 +26,10 @@ const Works: React.FC = () => {
             <div className="buttons">
               <Link to="/search">Procurar</Link>
               <p>
-                ou <span>registrar meu pet</span>
+                ou{' '}
+                <span>
+                  <Link to="/newpet">registrar meu pet</Link>
+                </span>
               </p>
             </div>
           </AnimationContainer>

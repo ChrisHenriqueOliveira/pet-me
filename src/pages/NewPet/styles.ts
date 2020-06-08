@@ -31,7 +31,9 @@ const appearFromTop = keyframes`
 `;
 
 export const AnimationContainer = styled.div`
-  width: 416px;
+  width: 100%;
+  max-width: 500px;
+
   margin: 0 auto;
 
   display: flex;
@@ -40,22 +42,49 @@ export const AnimationContainer = styled.div`
 
   animation: ${appearFromTop} 1s;
 
-  h1 {
-    margin-bottom: 24px;
-
-    font: 24px Roboto, sans-serif;
-    font-weight: 700;
-    color: #000;
+  img {
+    margin-top: -100px;
+    max-width: 100%;
   }
 
-  .searchSelects {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  form {
+    background-color: #fff;
 
-    .select {
-      width: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 100%;
+    padding: 20px;
+    border-radius: 8px;
+
+    -webkit-box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.1);
+
+    h1 {
+      font: 25px Roboto, sans-serif;
+      font-weight: 700;
+      color: #000;
+    }
+
+    h3 {
+      font: 20px Roboto, sans-serif;
+      font-weight: 500;
+      color: #838bc5;
+
+      width: 100%;
+      margin-bottom: 16px;
+    }
+
+    p {
+      margin-top: 8px;
+      margin-bottom: 20px;
+
+      font: 16px Roboto, sans-serif;
+      text-align: center;
+      font-weight: 400;
+      color: #979ba6;
     }
   }
 `;

@@ -65,7 +65,7 @@ export const AnimationContainer = styled.div`
     align-items: center;
     margin-top: 64px;
 
-    a {
+    > a {
       display: flex;
       align-items: center;
       justify-content: center;
@@ -98,15 +98,17 @@ export const AnimationContainer = styled.div`
       color: #000;
 
       span {
-        cursor: pointer;
+        a {
+          cursor: pointer;
 
-        font-weight: 500;
-        color: #838bc5;
+          font-weight: 500;
+          color: #838bc5;
 
-        transition: color 0.2s;
+          transition: color 0.2s;
 
-        &:hover {
-          color: ${shade(0.2, '#838bc5')};
+          &:hover {
+            color: ${shade(0.2, '#838bc5')};
+          }
         }
       }
     }
