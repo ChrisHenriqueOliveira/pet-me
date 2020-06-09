@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import Menu from '../../components/Menu';
+import Button from '../../components/Button';
 
 import { Container, Content, Body, AnimationContainer } from './styles';
 
@@ -21,7 +22,7 @@ const SignIn: React.FC = () => {
               cuidadores e torne-o seu novo amigo!
             </p>
             <div className="buttons">
-              <Link to="/search">Procurar</Link>
+              <Button>Procurar</Button>
               <p>
                 ou{' '}
                 <span>
