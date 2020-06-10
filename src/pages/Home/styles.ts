@@ -145,6 +145,8 @@ export const AnimationContainer = styled.div`
       justify-content: center;
       align-items: center;
 
+      margin-top: 40px;
+
       p {
         text-align: center;
         width: 100%;

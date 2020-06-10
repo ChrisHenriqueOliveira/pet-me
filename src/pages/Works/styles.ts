@@ -19,6 +19,21 @@ export const Body = styled.div`
   justify-content: space-between;
 
   margin: 80px 0;
+
+  img {
+    width: 100%;
+  }
+
+  @media only screen and (max-width: 1000px) {
+    display: flex;
+    flex-direction: column;
+
+    margin: 0;
+
+    img {
+      margin-bottom: 32px;
+    }
+  }
 `;
 
 const appearFromRight = keyframes`
@@ -34,7 +49,7 @@ const appearFromRight = keyframes`
 
 export const AnimationContainer = styled.div`
   margin-right: 16px;
-  width: 500px;
+  width: 100%;
   max-width: 500px;
 
   color: #000;
@@ -42,14 +57,14 @@ export const AnimationContainer = styled.div`
   animation: ${appearFromRight} 1s;
 
   h2 {
-    margin-top: 24px;
-
     font: 24px Roboto, sans-serif;
     font-weight: 400;
   }
 
   h1 {
-    font: 72px Roboto, sans-serif;
+    margin-top: 24px;
+
+    font: 40px Roboto, sans-serif;
     font-weight: 700;
   }
 
@@ -62,6 +77,7 @@ export const AnimationContainer = styled.div`
 
   .buttons {
     display: flex;
+    flex-direction: column;
     align-items: center;
     margin-top: 64px;
 
@@ -90,7 +106,6 @@ export const AnimationContainer = styled.div`
     }
 
     p {
-      margin: 0 8px;
       align-self: flex-end;
 
       font: 18px Roboto, sans-serif;
@@ -110,6 +125,32 @@ export const AnimationContainer = styled.div`
             color: ${shade(0.2, '#838bc5')};
           }
         }
+      }
+    }
+  }
+
+  @media only screen and (max-width: 1000px) {
+    h1 {
+      font-size: 32px;
+    }
+
+    h2,
+    p {
+      font-size: 16px;
+    }
+
+    .buttons {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      margin-top: 40px;
+
+      p {
+        text-align: center;
+        width: 100%;
+        margin: 8px 0 16px 0;
       }
     }
   }

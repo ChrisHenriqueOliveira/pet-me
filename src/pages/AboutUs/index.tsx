@@ -115,7 +115,6 @@ const AboutUs: React.FC = () => {
                     <FiFacebook size={25} />
                   </a>
                 </div>
-                <p>{item.email}</p>
               </div>
             </li>
           ))}

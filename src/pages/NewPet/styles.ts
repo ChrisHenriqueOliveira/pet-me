@@ -17,6 +17,10 @@ export const Body = styled.div`
   display: flex;
   flex-direction: column;
   margin: 64px 0;
+
+  @media only screen and (max-width: 1000px) {
+    margin: 0 0 64px 0;
+  }
 `;
 
 const appearFromTop = keyframes`
@@ -74,17 +78,26 @@ export const AnimationContainer = styled.div`
       color: #838bc5;
 
       width: 100%;
-      margin-bottom: 16px;
+      margin: 16px 0;
     }
 
     p {
       margin-top: 8px;
-      margin-bottom: 20px;
 
       font: 16px Roboto, sans-serif;
       text-align: center;
       font-weight: 400;
       color: #979ba6;
+    }
+
+    button {
+      svg {
+        margin-left: 8px;
+      }
+    }
+
+    .cancelButton {
+      background-color: #8e8e8e;
     }
   }
 `;

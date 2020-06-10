@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { IoMdMenu } from 'react-icons/io';
+import { IoMdMenu, IoMdClose } from 'react-icons/io';
 import { TopMenu, SideMenu } from './styles';
 
 const Menu: React.FC = () => {
@@ -26,7 +26,7 @@ const Menu: React.FC = () => {
       <SideMenu isShowing={isShowing}>
         <div className="content">
           <div className="logo">
-            <IoMdMenu onClick={() => setIsShowing(!isShowing)} />
+            <IoMdClose onClick={() => setIsShowing(!isShowing)} />
             <Link to="/">Pet.me</Link>
           </div>
           <div className="menu">
