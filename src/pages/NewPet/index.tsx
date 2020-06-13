@@ -11,6 +11,7 @@ import {
   IoIosSave,
   IoIosClose,
   IoMdClose,
+  IoIosImage,
 } from 'react-icons/io';
 
 import { FormHandles } from '@unform/core';
@@ -21,6 +22,7 @@ import Button from '../../components/Button';
 import Input from '../../components/Input';
 import Select from '../../components/Select';
 import TextArea from '../../components/TextArea';
+import ImageInput from '../../components/ImageInput';
 
 import { Container, Content, Body, AnimationContainer } from './styles';
 
@@ -174,6 +176,11 @@ const NewPet: React.FC = () => {
               </Select>
 
               <h3>Sobre o pet: </h3>
+              <ImageInput
+                name="petimage"
+                icon={IoIosImage}
+                placeholder="Imagem do pet"
+              />
               <Input
                 name="petname"
                 icon={IoIosPaw}
@@ -216,7 +223,7 @@ const NewPet: React.FC = () => {
               <TextArea
                 name="petdesc"
                 icon={IoIosToday}
-                placeholder="Sobre o pet"
+                placeholder="Sobre o pet (características, comportamentos, interação com outras pessoas etc)"
               />
               <Button type="submit">
                 Salvar

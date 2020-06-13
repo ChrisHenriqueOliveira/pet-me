@@ -46,7 +46,7 @@ export const AnimationContainer = styled.div`
 
   animation: ${appearFromTop} 1s;
 
-  img {
+  > img {
     margin-top: -100px;
     max-width: 100%;
   }
