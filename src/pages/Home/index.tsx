@@ -22,7 +22,7 @@ const SignIn: React.FC = () => {
               cuidadores e torne-o seu novo amigo!
             </p>
             <div className="buttons">
-              <Button>Procurar</Button>
+            <Link to="/search"><Button>Procurar</Button></Link>
               <p>
                 ou{' '}
                 <span>

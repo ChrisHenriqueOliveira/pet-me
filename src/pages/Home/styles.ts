@@ -76,44 +76,25 @@ export const AnimationContainer = styled.div`
   }
 
   .buttons {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 64px;
+    width: 100%;
 
-    > a {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
+    a {
       text-decoration: none;
-      border-radius: 8px;
-      color: #000;
-
-      width: 150px;
-      height: 64px;
-      background-color: #838bc5;
-
-      font: 24px Roboto, sans-serif;
-      font-weight: 400;
       color: #fff;
-
-      transition: background-color 0.2s;
-
-      &:hover {
-        background-color: ${shade(0.2, '#838bc5')};
-      }
     }
 
     p {
-      align-self: flex-end;
+      margin-top: 16px;
+
+      text-align: right;
 
       font: 18px Roboto, sans-serif;
       font-weight: 400;
       color: #000;
 
       span {
-        a {
+
+       > a {
           cursor: pointer;
 
           font-weight: 500;
@@ -140,12 +121,7 @@ export const AnimationContainer = styled.div`
     }
 
     .buttons {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-
-      margin-top: 40px;
+      width: 100%;
 
       p {
         text-align: center;

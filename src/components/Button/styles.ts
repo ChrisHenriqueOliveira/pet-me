@@ -20,4 +20,8 @@ export const Container = styled.button`
   &:hover {
     background: ${shade(0.2, '#838bc5')};
   }
+
+  > svg {
+    margin-left: 8px;
+  }
 `;

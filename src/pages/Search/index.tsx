@@ -1,9 +1,16 @@
-import React, { useEffect, useState } from 'react';
-import MenuItem from '@material-ui/core/MenuItem';
-import Select from '@material-ui/core/Select';
+import React, { useRef, useEffect, useState, useCallback } from 'react';
+
+import { IoIosPin, IoMdSearch } from 'react-icons/io';
+
+import { FormHandles } from '@unform/core';
+import { Form } from '@unform/web';
+
 import Lottie from 'react-lottie';
 import { IoMdFemale, IoMdMale } from 'react-icons/io';
+
 import Menu from '../../components/Menu';
+import Select from '../../components/Select';
+import Button from '../../components/Button';
 
 import animationData from '../../assets/petsSearch.json';
 
@@ -26,15 +33,21 @@ import {
   PetItem,
 } from './styles';
 
+interface NewSearchData {
+  city: string;
+  state: string;
+}
 interface LocationProperties {
   id: string;
   nome: string;
 }
 
 const Search: React.FC = () => {
+  const formRef = useRef<FormHandles>(null);
+
   const [states, setStates] = useState<LocationProperties[]>([]);
   const [cities, setCities] = useState<LocationProperties[]>([]);
-  const [pets, setPets] = useState('asds');
+  const [pets, setPets] = useState('');
 
   const [selectedState, setSelectedState] = useState('');
   const [selectedCity, setSelectedCity] = useState('');
@@ -94,6 +107,12 @@ const Search: React.FC = () => {
       .then(data => setStates(data));
   }, []);
 
+  const handleSubmit = useCallback(async (data: NewSearchData) => {
+    console.log(data);
+    setPets('s');
+
+  }, []);
+
   const handleStateChange = (
     event: React.ChangeEvent<{ value: unknown }>,
   ): void => {
@@ -118,7 +137,6 @@ const Search: React.FC = () => {
 
     setSelectedCity(city);
 
-    setPets('s');
   };
 
   return (
@@ -128,38 +146,44 @@ const Search: React.FC = () => {
         <Body>
           <AnimationContainer>
             <h1>Selecione onde deseja buscar:</h1>
-            <div className="searchSelects">
+            <Form ref={formRef} onSubmit={handleSubmit}>
               <Select
-                className="select"
-                value={selectedState}
+                name="ownerstate"
+                icon={IoIosPin}
+                placeholder="Estado"
                 onChange={handleStateChange}
-                displayEmpty
+                value={selectedState}
               >
-                <MenuItem value="" disabled>
+                <option value="" disabled>
                   Estado
-                </MenuItem>
+                </option>
                 {states.map((state: LocationProperties) => (
-                  <MenuItem key={state.id} value={state.id}>
+                  <option key={state.id} value={state.id}>
                     {state.nome}
-                  </MenuItem>
+                  </option>
                 ))}
               </Select>
               <Select
-                className="select"
-                value={selectedCity}
+                name="ownercity"
+                icon={IoIosPin}
+                placeholder="Cidade"
                 onChange={handleCityChange}
-                displayEmpty
+                value={selectedCity}
               >
-                <MenuItem value="" disabled>
+                <option value="" disabled>
                   Cidade
-                </MenuItem>
+                </option>
                 {cities.map((city: LocationProperties) => (
-                  <MenuItem key={city.id} value={city.id}>
+                  <option key={city.id} value={city.id}>
                     {city.nome}
-                  </MenuItem>
+                  </option>
                 ))}
               </Select>
-            </div>
+              <Button type="submit">
+                Pesquisar
+                <IoMdSearch size={20} />
+              </Button>
+            </Form>
           </AnimationContainer>
           <ResultsContainer>
             {pets !== '' ? (

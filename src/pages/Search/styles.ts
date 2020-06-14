@@ -31,7 +31,9 @@ const appearFromTop = keyframes`
 `;
 
 export const AnimationContainer = styled.div`
-  width: 416px;
+  width: 100%;
+  max-width: 500px;
+
   margin: 0 auto;
 
   display: flex;
@@ -48,14 +50,11 @@ export const AnimationContainer = styled.div`
     color: #000;
   }
 
-  .searchSelects {
+  form {
     width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
 
-    .select {
-      width: 200px;
+    > svg {
+      margin-left: 8px;
     }
   }
 `;
@@ -65,7 +64,7 @@ export const ResultsContainer = styled.div`
   justify-content: center;
   width: 100%;
 
-  margin-top: 64px;
+  margin-top: 32px;
 `;
 
 export const LoadingResultsContainer = styled.div`
@@ -80,7 +79,7 @@ export const LoadingResultsContainer = styled.div`
     width: 100%;
     text-align: center;
 
-    margin-bottom: 34px;
+    margin-bottom: 32px;
   }
 `;
 
@@ -94,16 +93,32 @@ export const LoadedResultsContainer = styled.div`
   justify-content: center;
   align-items: center;
 
-  margin-top: 64px;
+  margin-top: 32px;
   width: 100%;
+
+  @media only screen and (max-width: 1350px) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  @media only screen and (max-width: 970px) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media only screen and (max-width: 630px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 export const PetItem = styled.div`
   background-color: #838bc5;
 
-  border: 1px solid #646db0;
+  /* border: 1px solid #646db0;
   box-shadow: -1px 1px #646db0, -2px 2px #646db0, -3px 3px #646db0,
-    -4px 4px #646db0, -5px 5px #646db0;
+    -4px 4px #646db0, -5px 5px #646db0; */
+
+  -webkit-box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.1);
 
   display: flex;
   flex-direction: column;
@@ -122,10 +137,14 @@ export const PetItem = styled.div`
   }
 
   img {
-    border-radius: 20px;
-    width: 100%;
-    height: 185px;
-  }
+      border-radius: 10px;
+      margin: 0;
+      max-width: 100%;
+      width: auto;
+      height: 185px;
+
+      resize: contain;
+    }
 
   h1 {
     margin-top: 8px;
