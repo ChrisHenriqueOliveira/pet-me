@@ -52,7 +52,7 @@ const NewPet: React.FC = () => {
   const history = useHistory();
   const formRef = useRef<FormHandles>(null);
 
-  const [maximumDate, setMaximumDate] = useState('2020-06-07'); // temp date
+  const maximumDate = '2020-06-07'; // temp date
 
   const [states, setStates] = useState<LocationProperties[]>([]);
   const [cities, setCities] = useState<LocationProperties[]>([]);
