@@ -90,14 +90,12 @@ export const AnimationContainer = styled.div`
       color: #979ba6;
     }
 
-    button {
-      svg {
-        margin-left: 8px;
-      }
-    }
-
-    .cancelButton {
+    button + button {
       background-color: #8e8e8e;
+
+      &:hover {
+        background: ${shade(0.2, '#8e8e8e')};
+      }
     }
   }
 `;

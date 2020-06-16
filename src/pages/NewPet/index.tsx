@@ -9,7 +9,6 @@ import {
   IoIosCalendar,
   IoIosToday,
   IoIosSave,
-  IoIosClose,
   IoMdClose,
   IoIosImage,
 } from 'react-icons/io';
@@ -17,6 +16,12 @@ import {
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import { useHistory } from 'react-router-dom';
 import Menu from '../../components/Menu';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
@@ -25,8 +30,6 @@ import TextArea from '../../components/TextArea';
 import ImageInput from '../../components/ImageInput';
 
 import { Container, Content, Body, AnimationContainer } from './styles';
-
-import img from '../../assets/image3.png';
 
 interface NewPetFormData {
   ownername: string;
@@ -46,6 +49,7 @@ interface LocationProperties {
 }
 
 const NewPet: React.FC = () => {
+  const history = useHistory();
   const formRef = useRef<FormHandles>(null);
 
   const [maximumDate, setMaximumDate] = useState('2020-06-07'); // temp date
@@ -57,9 +61,15 @@ const NewPet: React.FC = () => {
   const [selectedSize, setSelectedSize] = useState('');
   const [selectedSpecie, setSelectedSpecie] = useState('');
 
+  const [cancelRegister, setCancelRegister] = useState(false);
+
   const handleSubmit = useCallback(async (data: NewPetFormData) => {
     console.log(data);
   }, []);
+
+  const handleCancel = useCallback(() => {
+    history.push('/');
+  }, [history]);
 
   useEffect(() => {
     fetch(
@@ -229,15 +239,32 @@ const NewPet: React.FC = () => {
                 Salvar
                 <IoIosSave size={20} />
               </Button>
-              <Button
-                className="cancelButton"
-                type="button"
-                onClick={() => console.log('canceç')}
-              >
+              <Button type="button" onClick={() => setCancelRegister(true)}>
                 Cancelar
                 <IoMdClose size={30} />
               </Button>
             </Form>
+            <Dialog
+              open={cancelRegister}
+              onClose={() => setCancelRegister(false)}
+              aria-labelledby="alert-dialog-title"
+              aria-describedby="alert-dialog-description"
+            >
+              <DialogTitle id="alert-dialog-title">
+                Deseja cancelar o registro do pet?
+              </DialogTitle>
+              <DialogContent>
+                <DialogContentText id="alert-dialog-description">
+                  Ao clicar em SIM você perderá todos os dados ja inseridos
+                  nessa tela e retornará à página inicial! Caso queira continuar
+                  o registro, clique em NÃO.
+                </DialogContentText>
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={handleCancel}>SIM</Button>
+                <Button onClick={() => setCancelRegister(false)}>NÃO</Button>
+              </DialogActions>
+            </Dialog>
           </AnimationContainer>
         </Body>
       </Content>

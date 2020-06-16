@@ -112,10 +112,6 @@ export const LoadedResultsContainer = styled.div`
 export const PetItem = styled.div`
   background-color: #838bc5;
 
-  /* border: 1px solid #646db0;
-  box-shadow: -1px 1px #646db0, -2px 2px #646db0, -3px 3px #646db0,
-    -4px 4px #646db0, -5px 5px #646db0; */
-
   -webkit-box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.1);
   -moz-box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.1);
   box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.1);
@@ -128,7 +124,7 @@ export const PetItem = styled.div`
   height: 400px;
   padding: 16px;
 
-  border-radius: 20px;
+  border-radius: 10px;
 
   transition: transform 0.2s;
 
@@ -137,14 +133,14 @@ export const PetItem = styled.div`
   }
 
   img {
-      border-radius: 10px;
-      margin: 0;
-      max-width: 100%;
-      width: auto;
-      height: 185px;
+    border-radius: 10px;
+    margin: 0;
+    max-width: 100%;
+    width: auto;
+    height: 185px;
 
-      resize: contain;
-    }
+    resize: contain;
+  }
 
   h1 {
     margin-top: 8px;

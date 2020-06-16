@@ -62,12 +62,12 @@
           "onMouseUp",
           "onKeyPress",
           "onKeyDown",
-          "onKeyUp",
+          "onKeyUp"
         ]
       }
     ]
   },
-  
+
   "settings": {
     "import/resolver": {
       "typescript": {}

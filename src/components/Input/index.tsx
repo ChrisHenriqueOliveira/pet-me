@@ -32,13 +32,16 @@ const Input: React.FC<InputProps> = ({ name, icon: Icon, ...rest }) => {
     [fieldName],
   );
 
-  const handleInputBlur = useCallback(e => {
-    setIsFocused(false);
+  const handleInputBlur = useCallback(
+    e => {
+      setIsFocused(false);
 
-    if (fieldName.includes('date') && !e.currentTarget.value) {
-      e.currentTarget.type = 'text';
-    }
-  }, []);
+      if (fieldName.includes('date') && !e.currentTarget.value) {
+        e.currentTarget.type = 'text';
+      }
+    },
+    [fieldName],
+  );
 
   useEffect(() => {
     registerField({

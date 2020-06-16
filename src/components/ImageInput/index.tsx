@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/interactive-supports-focus */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, {
   ChangeEvent,
   useRef,
@@ -10,7 +12,7 @@ import { IconBaseProps } from 'react-icons';
 
 import { useField } from '@unform/core';
 
-import { Container, ImagePreview, Error } from './styles';
+import { Container, ImagePreview } from './styles';
 
 interface Props {
   name: string;
@@ -63,14 +65,22 @@ const ImageInput: React.FC<InputProps> = ({ name, icon: Icon, ...rest }) => {
     <>
       <ImagePreview>
         {preview ? (
-          <div className="withImageSelected" onClick={handleClick} role="button">
+          <div
+            className="withImageSelected"
+            onClick={handleClick}
+            role="button"
+          >
             <img src={preview} alt="Preview" width="100" />
           </div>
         ) : (
-          <div className="withoutImageSelected" onClick={handleClick} role="button">
+          <div
+            className="withoutImageSelected"
+            onClick={handleClick}
+            role="button"
+          >
             {Icon && <Icon size={50} />}
 
-            <button type="button" >
+            <button type="button">
               Clique para selecionar a imagem do pet
             </button>
           </div>

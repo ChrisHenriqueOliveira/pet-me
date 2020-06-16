@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { FiLinkedin, FiGithub, FiInstagram, FiFacebook } from 'react-icons/fi';
-import { IoLogoGoogle } from 'react-icons/io';
 import Menu from '../../components/Menu';
 
 import {
@@ -16,6 +15,7 @@ import {
 import img from '../../assets/image3.png';
 
 import christian from '../../assets/christian.jpg';
+import guilherme from '../../assets/guilherme.jpg';
 
 interface Members {
   id: number;
@@ -25,7 +25,6 @@ interface Members {
   github: string;
   instagram: string;
   facebook: string;
-  email: string;
 }
 
 const AboutUs: React.FC = () => {
@@ -39,17 +38,15 @@ const AboutUs: React.FC = () => {
       github: 'https://github.com/ChrisHenriqueOliveira',
       instagram: 'https://www.instagram.com/_chrishenrique_/',
       facebook: 'https://www.facebook.com/christian.h.oliveira',
-      email: 'o.christianh@gmail.com',
     },
     {
       id: 2,
       name: 'Guilherme Farias',
-      image: christian,
-      linkedin: 'https://www.linkedin.com/in/gisely-garcia-b66948190 ',
+      image: guilherme,
+      linkedin: 'https://www.linkedin.com/in/guilherme-dfarias/',
       github: '',
-      instagram: 'https://www.instagram.com/giselygps/',
-      facebook: 'https://www.facebook.com/gisely.gsouza',
-      email: 'guilhermeblabla@gmail.com',
+      instagram: 'https://www.instagram.com/gui.dfarias/',
+      facebook: 'https://www.facebook.com/profile.php?id=100015852306759',
     },
   ];
 

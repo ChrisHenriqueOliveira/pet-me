@@ -169,8 +169,10 @@ export const AboutInfo = styled.div`
     }
 
     img {
-      width: 150px;
-      height: 150px;
+      width: 100%;
+      height: 100%;
+      max-width: 150px;
+      max-height: 150px;
       border-top-left-radius: 20px;
       border-bottom-left-radius: 20px;
     }

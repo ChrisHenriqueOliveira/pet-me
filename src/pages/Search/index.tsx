@@ -1,12 +1,11 @@
 import React, { useRef, useEffect, useState, useCallback } from 'react';
 
-import { IoIosPin, IoMdSearch } from 'react-icons/io';
+import { IoIosPin, IoMdSearch, IoMdFemale, IoMdMale } from 'react-icons/io';
 
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 
 import Lottie from 'react-lottie';
-import { IoMdFemale, IoMdMale } from 'react-icons/io';
 
 import Menu from '../../components/Menu';
 import Select from '../../components/Select';
@@ -18,9 +17,9 @@ import animationData from '../../assets/petsSearch.json';
 
 import pet1 from '../../assets/pet1.jpg';
 import pet2 from '../../assets/pet2.jpg';
-import pet3 from '../../assets/pet3.jpg';
-import pet4 from '../../assets/pet4.jpg';
-import pet5 from '../../assets/pet5.jpg';
+// import pet3 from '../../assets/pet3.jpg';
+// import pet4 from '../../assets/pet4.jpg';
+// import pet5 from '../../assets/pet5.jpg';
 
 import {
   Container,
@@ -33,9 +32,18 @@ import {
   PetItem,
 } from './styles';
 
-interface NewSearchData {
+interface PetInfo {
+  id: string;
+  imagem: string;
+  nome: string;
+  sexo: string;
+  idade: string;
+  description: string;
   city: string;
-  state: string;
+}
+interface NewSearchData {
+  ownercity: string;
+  ownerstate: string;
 }
 interface LocationProperties {
   id: string;
@@ -47,7 +55,7 @@ const Search: React.FC = () => {
 
   const [states, setStates] = useState<LocationProperties[]>([]);
   const [cities, setCities] = useState<LocationProperties[]>([]);
-  const [pets, setPets] = useState('');
+  const [pets, setPets] = useState<PetInfo[] | null>(null);
 
   const [selectedState, setSelectedState] = useState('');
   const [selectedCity, setSelectedCity] = useState('');
@@ -61,42 +69,27 @@ const Search: React.FC = () => {
     },
   };
 
-  const showPetTem = [
-    { number: pet1 },
-    { number: pet2 },
-    { number: pet3 },
-    { number: pet4 },
-    { number: pet5 },
-    { number: pet1 },
-    { number: pet2 },
-    { number: pet3 },
-    { number: pet4 },
-    { number: pet5 },
-    { number: pet1 },
-    { number: pet2 },
-    { number: pet3 },
-    { number: pet4 },
-    { number: pet5 },
-    { number: pet1 },
-    { number: pet2 },
-    { number: pet3 },
-    { number: pet4 },
-    { number: pet5 },
-    { number: pet1 },
-    { number: pet2 },
-    { number: pet3 },
-    { number: pet4 },
-    { number: pet5 },
-    { number: pet1 },
-    { number: pet2 },
-    { number: pet3 },
-    { number: pet4 },
-    { number: pet5 },
-    { number: pet1 },
-    { number: pet2 },
-    { number: pet3 },
-    { number: pet4 },
-    { number: pet5 },
+  const PetsData: PetInfo[] = [
+    {
+      id: '1',
+      imagem: pet1,
+      nome: 'Pet 1',
+      sexo: 'Macho',
+      idade: '02 meses',
+      description:
+        'Usuário de ossos e impiedoso perante os aquáticos eroedores enquanto navega pelos rios em busca da gata certa.',
+      city: '120001305',
+    },
+    {
+      id: '2',
+      imagem: pet2,
+      nome: 'Pet 2',
+      sexo: 'Femea',
+      idade: '02 meses',
+      description:
+        'Usuário de ossos e impiedoso perante os aquáticos eroedores enquanto navega pelos rios em busca da gata certa.',
+      city: '352590405',
+    },
   ];
 
   useEffect(() => {
@@ -107,11 +100,18 @@ const Search: React.FC = () => {
       .then(data => setStates(data));
   }, []);
 
-  const handleSubmit = useCallback(async (data: NewSearchData) => {
-    console.log(data);
-    setPets('s');
+  const handleSubmit = useCallback(
+    async (data: NewSearchData) => {
+      const filteredPets = PetsData.filter(pet => {
+        return pet.city === data.ownercity;
+      });
 
-  }, []);
+      console.log(filteredPets);
+
+      setPets(filteredPets);
+    },
+    [PetsData],
+  );
 
   const handleStateChange = (
     event: React.ChangeEvent<{ value: unknown }>,
@@ -136,7 +136,6 @@ const Search: React.FC = () => {
     const city = event.target.value as string;
 
     setSelectedCity(city);
-
   };
 
   return (
@@ -169,6 +168,7 @@ const Search: React.FC = () => {
                 placeholder="Cidade"
                 onChange={handleCityChange}
                 value={selectedCity}
+                disabled={!selectedState}
               >
                 <option value="" disabled>
                   Cidade
@@ -179,28 +179,24 @@ const Search: React.FC = () => {
                   </option>
                 ))}
               </Select>
-              <Button type="submit">
+              <Button type="submit" disabled={!selectedCity}>
                 Pesquisar
                 <IoMdSearch size={20} />
               </Button>
             </Form>
           </AnimationContainer>
           <ResultsContainer>
-            {pets !== '' ? (
+            {pets !== null ? (
               <LoadedResultsContainer>
-                {showPetTem.map(item => (
-                  <PetItem key={item.number}>
-                    <img src={item.number} alt="PetImage" />
-                    <h1>Clebinho do mato</h1>
+                {pets.map(item => (
+                  <PetItem key={item.id}>
+                    <img src={item.imagem} alt="PetImage" />
+                    <h1>{item.nome}</h1>
                     <div className="genderAndAge">
-                      <IoMdFemale />
-                      <p>2 meses</p>
+                      {item.sexo === 'Macho' ? <IoMdMale /> : <IoMdFemale />}
+                      <p>{item.idade}</p>
                     </div>
-                    <p>
-                      Usuário de ossos e impiedoso perante os aquáticos e
-                      roedores enquanto navega pelos rios em busca da gata
-                      certa... ou não.
-                    </p>
+                    <p>{item.description}</p>
                     <button type="button">Mais informações</button>
                   </PetItem>
                 ))}
