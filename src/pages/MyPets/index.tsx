@@ -1,4 +1,4 @@
-import React, { useRef, useState, useCallback, useEffect } from 'react';
+import React, { useRef, useState, useCallback } from 'react';
 
 import { IoIosPhonePortrait, IoIosLogIn, IoIosText } from 'react-icons/io';
 
@@ -44,7 +44,7 @@ const MyPets: React.FC = () => {
     setCellPhoneFilled(true);
   }, []);
 
-  const handleSubmitAccessCode = useCallback(async () => {
+  const handleSubmitAccessCode = useCallback(() => {
     // verifica se informação inserida é valida YUP
     // verifica se bate com cellphone e code do banco
     // se não for, mensagem de codigo invalido
