@@ -122,6 +122,32 @@ const NewPet: React.FC = () => {
     console.log(size);
   };
 
+  const handleShowDialog = useCallback(() => {
+    return (
+      <Dialog
+        open={cancelRegister}
+        onClose={() => setCancelRegister(false)}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          Deseja cancelar o registro do pet?
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Ao clicar em SIM você perderá todos os dados ja inseridos nessa tela
+            e retornará à página inicial! Caso queira continuar o registro,
+            clique em NÃO.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleCancel}>SIM</Button>
+          <Button onClick={() => setCancelRegister(false)}>NÃO</Button>
+        </DialogActions>
+      </Dialog>
+    );
+  }, [cancelRegister, handleCancel]);
+
   return (
     <Container>
       <Content>
@@ -244,30 +270,10 @@ const NewPet: React.FC = () => {
                 <IoMdClose size={30} />
               </Button>
             </Form>
-            <Dialog
-              open={cancelRegister}
-              onClose={() => setCancelRegister(false)}
-              aria-labelledby="alert-dialog-title"
-              aria-describedby="alert-dialog-description"
-            >
-              <DialogTitle id="alert-dialog-title">
-                Deseja cancelar o registro do pet?
-              </DialogTitle>
-              <DialogContent>
-                <DialogContentText id="alert-dialog-description">
-                  Ao clicar em SIM você perderá todos os dados ja inseridos
-                  nessa tela e retornará à página inicial! Caso queira continuar
-                  o registro, clique em NÃO.
-                </DialogContentText>
-              </DialogContent>
-              <DialogActions>
-                <Button onClick={handleCancel}>SIM</Button>
-                <Button onClick={() => setCancelRegister(false)}>NÃO</Button>
-              </DialogActions>
-            </Dialog>
           </AnimationContainer>
         </Body>
       </Content>
+      {cancelRegister && handleShowDialog()}
     </Container>
   );
 };

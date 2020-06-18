@@ -16,6 +16,7 @@ const Menu: React.FC = () => {
         </div>
         <div className="menu">
           <Link to="/">Início</Link>
+          <Link to="/mypets">Meus pets</Link>
           <Link to="/works">Como funciona</Link>
           <Link to="/aboutus">Sobre nós</Link>
           <Link to="/stories">Histórias</Link>
@@ -31,6 +32,7 @@ const Menu: React.FC = () => {
           </div>
           <div className="menu">
             <Link to="/">Início</Link>
+            <Link to="/mypets">Meus pets</Link>
             <Link to="/works">Como funciona</Link>
             <Link to="/aboutus">Sobre nós</Link>
             <Link to="/stories">Histórias</Link>
