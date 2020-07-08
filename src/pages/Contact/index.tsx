@@ -4,7 +4,7 @@ import Menu from '../../components/Menu';
 
 import { Container, Content, Body, AnimationContainer } from './styles';
 
-import img from '../../assets/image5.png';
+import img from '../../assets/petScreen4.svg';
 
 const Contact: React.FC = () => {
   return (
@@ -27,9 +27,7 @@ const Contact: React.FC = () => {
             </p>
           </AnimationContainer>
 
-          <div className="rightSide">
-            <img src={img} alt="img1" />
-          </div>
+          <img src={img} alt="img1" />
         </Body>
       </Content>
     </Container>

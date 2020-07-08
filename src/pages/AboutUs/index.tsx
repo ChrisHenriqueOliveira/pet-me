@@ -12,7 +12,7 @@ import {
   Divider,
 } from './styles';
 
-import img from '../../assets/image3.png';
+import img from '../../assets/petScreen3.svg';
 
 import christian from '../../assets/christian.jpg';
 import guilherme from '../../assets/guilherme.jpg';
@@ -70,9 +70,7 @@ const AboutUs: React.FC = () => {
             <p>Att. Christian e Guilherme</p>
           </AnimationContainer>
 
-          <div className="rightSide">
-            <img src={img} alt="img1" />
-          </div>
+          <img src={img} alt="img1" />
         </Body>
 
         <AboutInfo>

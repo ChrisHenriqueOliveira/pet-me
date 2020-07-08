@@ -4,7 +4,6 @@ import { Switch, Route } from 'react-router-dom';
 import Home from '../pages/Home';
 import Works from '../pages/Works';
 import AboutUs from '../pages/AboutUs';
-import Stories from '../pages/Stories';
 import Contact from '../pages/Contact';
 import Search from '../pages/Search';
 import NewPet from '../pages/NewPet';
@@ -18,7 +17,6 @@ const Routes: React.FC = () => (
     <Route path="/mypets" exact component={MyPets} />
     <Route path="/works" exact component={Works} />
     <Route path="/aboutus" exact component={AboutUs} />
-    <Route path="/stories" exact component={Stories} />
     <Route path="/contact" exact component={Contact} />
   </Switch>
 );

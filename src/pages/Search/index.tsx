@@ -5,21 +5,17 @@ import { IoIosPin, IoMdSearch, IoMdFemale, IoMdMale } from 'react-icons/io';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 
-import Lottie from 'react-lottie';
-
 import Menu from '../../components/Menu';
 import Select from '../../components/Select';
 import Button from '../../components/Button';
-
-import animationData from '../../assets/petsSearch.json';
-
-// temp
 
 import pet1 from '../../assets/pet1.jpg';
 import pet2 from '../../assets/pet2.jpg';
 // import pet3 from '../../assets/pet3.jpg';
 // import pet4 from '../../assets/pet4.jpg';
 // import pet5 from '../../assets/pet5.jpg';
+
+import petAdoptionSearch from '../../assets/petAdoptionSearch.svg';
 
 import {
   Container,
@@ -60,15 +56,6 @@ const Search: React.FC = () => {
   const [selectedState, setSelectedState] = useState('');
   const [selectedCity, setSelectedCity] = useState('');
 
-  const defaultLottieOptions = {
-    loop: true,
-    autoplay: true,
-    animationData,
-    rendererSettings: {
-      preserveAspectRatio: 'xMidYMid slice',
-    },
-  };
-
   const PetsData: PetInfo[] = [
     {
       id: '1',
@@ -106,9 +93,7 @@ const Search: React.FC = () => {
         return pet.city === data.ownercity;
       });
 
-      console.log(filteredPets);
-
-      setPets(filteredPets);
+      filteredPets.length > 0 ? setPets(filteredPets) : setPets(null);
     },
     [PetsData],
   );
@@ -203,12 +188,7 @@ const Search: React.FC = () => {
               </LoadedResultsContainer>
             ) : (
               <LoadingResultsContainer>
-                <h2>Nada para mostrar aqui ainda =(</h2>
-                <Lottie
-                  options={defaultLottieOptions}
-                  height={400}
-                  width={400}
-                />
+                <img src={petAdoptionSearch} alt="PetImage" />
               </LoadingResultsContainer>
             )}
           </ResultsContainer>

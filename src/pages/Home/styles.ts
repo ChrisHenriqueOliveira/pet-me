@@ -21,7 +21,7 @@ export const Body = styled.div`
   margin: 80px 0;
 
   img {
-    width: 100%;
+    width: 50%;
   }
 
   @media only screen and (max-width: 1000px) {
@@ -31,7 +31,9 @@ export const Body = styled.div`
     margin: 0;
 
     img {
-      margin-bottom: 32px;
+      margin: 32px 0;
+      width: 100%;
+      max-width: 500px;
     }
   }
 `;
@@ -93,8 +95,7 @@ export const AnimationContainer = styled.div`
       color: #000;
 
       span {
-
-       > a {
+        > a {
           cursor: pointer;
 
           font-weight: 500;

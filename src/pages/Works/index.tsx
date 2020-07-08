@@ -6,7 +6,7 @@ import Button from '../../components/Button';
 
 import { Container, Content, Body, AnimationContainer } from './styles';
 
-import img from '../../assets/image2.png';
+import img from '../../assets/petScreen1.svg';
 
 const Works: React.FC = () => {
   return (
@@ -25,7 +25,9 @@ const Works: React.FC = () => {
               Começe agora mesmo!
             </p>
             <div className="buttons">
-            <Link to="/search"><Button>Procurar</Button></Link>
+              <Link to="/search">
+                <Button>Procurar</Button>
+              </Link>
               <p>
                 ou{' '}
                 <span>
@@ -35,9 +37,7 @@ const Works: React.FC = () => {
             </div>
           </AnimationContainer>
 
-          <div className="rightSide">
-            <img src={img} alt="img1" />
-          </div>
+          <img src={img} alt="img1" />
         </Body>
       </Content>
     </Container>

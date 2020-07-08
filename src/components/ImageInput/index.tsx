@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 /* eslint-disable jsx-a11y/interactive-supports-focus */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, {
@@ -12,7 +13,8 @@ import { IconBaseProps } from 'react-icons';
 
 import { useField } from '@unform/core';
 
-import { Container, ImagePreview } from './styles';
+import { FiAlertCircle } from 'react-icons/fi';
+import { Container, ImagePreview, Error } from './styles';
 
 interface Props {
   name: string;
@@ -63,7 +65,7 @@ const ImageInput: React.FC<InputProps> = ({ name, icon: Icon, ...rest }) => {
 
   return (
     <>
-      <ImagePreview>
+      <ImagePreview isErrored={!!error}>
         {preview ? (
           <div
             className="withImageSelected"
@@ -85,9 +87,14 @@ const ImageInput: React.FC<InputProps> = ({ name, icon: Icon, ...rest }) => {
             </button>
           </div>
         )}
+        {error && (
+          <Error title={error}>
+            <FiAlertCircle color="c53030" size={20} />
+          </Error>
+        )}
       </ImagePreview>
 
-      <Container isErrored={!!error} style={{ display: 'none' }}>
+      <Container style={{ display: 'none' }}>
         {Icon && <Icon size={20} />}
         <input
           type="file"

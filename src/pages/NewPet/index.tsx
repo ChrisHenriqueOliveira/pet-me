@@ -1,4 +1,5 @@
 import React, { useRef, useEffect, useState, useCallback } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import {
   IoIosPerson,
@@ -9,19 +10,15 @@ import {
   IoIosCalendar,
   IoIosToday,
   IoIosSave,
-  IoMdClose,
   IoIosImage,
 } from 'react-icons/io';
 
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
+import * as Yup from 'yup';
 
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import { useHistory } from 'react-router-dom';
+import getValidationErrors from '../../utils/getValidationErrors';
+
 import Menu from '../../components/Menu';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
@@ -49,7 +46,6 @@ interface LocationProperties {
 }
 
 const NewPet: React.FC = () => {
-  const history = useHistory();
   const formRef = useRef<FormHandles>(null);
 
   const maximumDate = '2020-06-07'; // temp date
@@ -61,15 +57,43 @@ const NewPet: React.FC = () => {
   const [selectedSize, setSelectedSize] = useState('');
   const [selectedSpecie, setSelectedSpecie] = useState('');
 
-  const [cancelRegister, setCancelRegister] = useState(false);
-
   const handleSubmit = useCallback(async (data: NewPetFormData) => {
+    try {
+      formRef.current?.setErrors({});
+
+      const schema = Yup.object().shape({
+        ownercity: Yup.string().required('Cidade é obrigatória'),
+        ownercontact: Yup.string().required('Contato é obrigatório'),
+        owneremail: Yup.string()
+          .required('Email é obrigatório')
+          .email('Digite um e-mail válido'),
+        ownername: Yup.string().required('Nome do dono é obrigatório'),
+        ownerstate: Yup.string().required('Estado é obrigatório'),
+        petbirthdate: Yup.string().required('Data de nascimento é obrigatória'),
+        petdesc: Yup.string().required('Descrição é obrigatória'),
+        petimage: Yup.string().required('Imagem é obrigatória'),
+        petname: Yup.string().required('Nome do pet é obrigatório'),
+        petsize: Yup.string().required('Porte é obrigatório'),
+        petspecie: Yup.string().required('Espécie é obrigatória'),
+      });
+
+      await schema.validate(data, { abortEarly: false });
+
+      // await signIn({
+      //   email: data.email,
+      //   password: data.password,
+      // });
+
+      // history.push('/');
+    } catch (err) {
+      if (err instanceof Yup.ValidationError) {
+        const errors = getValidationErrors(err);
+
+        formRef.current?.setErrors(errors);
+      }
+    }
     console.log(data);
   }, []);
-
-  const handleCancel = useCallback(() => {
-    history.push('/');
-  }, [history]);
 
   useEffect(() => {
     fetch(
@@ -121,32 +145,6 @@ const NewPet: React.FC = () => {
 
     console.log(size);
   };
-
-  const handleShowDialog = useCallback(() => {
-    return (
-      <Dialog
-        open={cancelRegister}
-        onClose={() => setCancelRegister(false)}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
-        <DialogTitle id="alert-dialog-title">
-          Deseja cancelar o registro do pet?
-        </DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            Ao clicar em SIM você perderá todos os dados ja inseridos nessa tela
-            e retornará à página inicial! Caso queira continuar o registro,
-            clique em NÃO.
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleCancel}>SIM</Button>
-          <Button onClick={() => setCancelRegister(false)}>NÃO</Button>
-        </DialogActions>
-      </Dialog>
-    );
-  }, [cancelRegister, handleCancel]);
 
   return (
     <Container>
@@ -265,15 +263,10 @@ const NewPet: React.FC = () => {
                 Salvar
                 <IoIosSave size={20} />
               </Button>
-              <Button type="button" onClick={() => setCancelRegister(true)}>
-                Cancelar
-                <IoMdClose size={30} />
-              </Button>
             </Form>
           </AnimationContainer>
         </Body>
       </Content>
-      {cancelRegister && handleShowDialog()}
     </Container>
   );
 };

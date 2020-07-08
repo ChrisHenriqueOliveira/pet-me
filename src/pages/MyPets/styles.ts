@@ -46,6 +46,12 @@ export const AnimationContainer = styled.div`
 
   animation: ${appearFromTop} 1s;
 
+  img {
+    margin-top: 32px;
+    width: 100%;
+    max-width: 300px;
+  }
+
   form {
     background-color: #fff;
 

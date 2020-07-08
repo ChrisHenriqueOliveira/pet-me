@@ -3,11 +3,10 @@ import styled, { css } from 'styled-components';
 import Tooltip from '../Tooltip';
 
 interface ContainerProps {
-  isFocused?: boolean;
   isErrored: boolean;
 }
 
-export const Container = styled.div<ContainerProps>`
+export const Container = styled.div`
   background: #f0f2fd;
   border-radius: 10px;
   padding: 16px;
@@ -22,12 +21,6 @@ export const Container = styled.div<ContainerProps>`
   & + div {
     margin-top: 8px;
   }
-
-  ${props =>
-    props.isErrored &&
-    css`
-      border-color: #c53030;
-    `}
 
   input {
     flex: 1;
@@ -52,10 +45,11 @@ export const Container = styled.div<ContainerProps>`
   }
 `;
 
-export const ImagePreview = styled.div`
+export const ImagePreview = styled.div<ContainerProps>`
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
 
   background-color: #f0f2fd;
 
@@ -65,6 +59,13 @@ export const ImagePreview = styled.div`
 
   border-radius: 10px;
   padding: 16px;
+  border: 2px solid #f0f2fd;
+
+  ${props =>
+    props.isErrored &&
+    css`
+      border-color: #c53030;
+    `}
 
   .withImageSelected {
     width: 100%;
@@ -119,6 +120,10 @@ export const ImagePreview = styled.div`
 export const Error = styled(Tooltip)`
   height: 20px;
   margin-left: 16px;
+  position: absolute;
+  top: 16px;
+  right: 16px;
+
   svg {
     margin: 0;
   }

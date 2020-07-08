@@ -1,86 +1,55 @@
 import React, { useRef, useState, useCallback } from 'react';
 
-import { IoIosPhonePortrait, IoIosLogIn, IoIosText } from 'react-icons/io';
+import { IoIosLogIn, IoIosCard } from 'react-icons/io';
 
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
+import * as Yup from 'yup';
 
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
 import { useHistory } from 'react-router-dom';
+import getValidationErrors from '../../utils/getValidationErrors';
+
 import Menu from '../../components/Menu';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
 
-import { Container, Content, Body, AnimationContainer } from './styles';
+import myPetsLogin from '../../assets/myPetsLogin.svg';
+import myPetsEmpty from '../../assets/myPetsEmpty.svg';
 
-interface LoginInfo {
-  cellphonenumber: string;
-}
+import { Container, Content, Body, AnimationContainer } from './styles';
 
 const MyPets: React.FC = () => {
   const history = useHistory();
   const formRef = useRef<FormHandles>(null);
 
-  const [logoutConfirm, setLogoutConfirm] = useState(false);
+  const [cpf, setCpf] = useState('');
 
-  const [cellphoneNumber, setCellphoneNumber] = useState('');
-  const [accessCode, setAccessCode] = useState('');
-
-  const [cellPhoneFilled, setCellPhoneFilled] = useState(false);
   const [logged, setLogged] = useState(false);
 
-  const handleSubmitCellphoneNumber = useCallback(() => {
-    // verifica se informação inserida é valida YUP
-    // verifica se existe esse numero de celular no banco
-    // se ja existe, msg de erro
-    // envia mensagem SMS com codigo
-    // insere no banco o codigo
-    // se der erro, msg de erro
-    // se nao:
-    setCellPhoneFilled(true);
+  const handleSubmit = useCallback(async data => {
+    try {
+      formRef.current?.setErrors({});
+
+      const schema = Yup.object().shape({
+        cpf: Yup.number().required('CPF é obrigatório'),
+      });
+
+      await schema.validate(data, { abortEarly: false });
+
+      // await signIn({
+      //   email: data.email,
+      //   password: data.password,
+      // });
+
+      setLogged(true);
+    } catch (err) {
+      if (err instanceof Yup.ValidationError) {
+        const errors = getValidationErrors(err);
+
+        formRef.current?.setErrors(errors);
+      }
+    }
   }, []);
-
-  const handleSubmitAccessCode = useCallback(() => {
-    // verifica se informação inserida é valida YUP
-    // verifica se bate com cellphone e code do banco
-    // se não for, mensagem de codigo invalido
-    // se for:
-    setLogged(true);
-  }, []);
-
-  const handleLogout = useCallback(() => {
-    history.push('/mypets');
-  }, [history]);
-
-  const handleShowDialog = useCallback(() => {
-    return (
-      <Dialog
-        open={logoutConfirm}
-        onClose={() => setLogoutConfirm(false)}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
-        <DialogTitle id="alert-dialog-title">
-          Deseja realmente sair?
-        </DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            Ao clicar em SIM você está saindo de sua conta e precisará inserir
-            seu celular novamente para entrar! Caso queira continuar logado,
-            clique em NÃO.
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleLogout}>SIM</Button>
-          <Button onClick={() => setLogoutConfirm(false)}>NÃO</Button>
-        </DialogActions>
-      </Dialog>
-    );
-  }, [handleLogout, logoutConfirm]);
 
   return (
     <Container>
@@ -90,55 +59,35 @@ const MyPets: React.FC = () => {
           {logged ? (
             <AnimationContainer>
               <h1>Meus Pets</h1>
+              <img src={myPetsEmpty} alt="PetImage" />
             </AnimationContainer>
           ) : (
             <AnimationContainer>
-              {!cellPhoneFilled ? (
-                <Form ref={formRef} onSubmit={handleSubmitCellphoneNumber}>
-                  <h1>Meus Pets</h1>
-                  <p>
-                    Entre com o número de celular utilizado para cadastrar os
-                    pets para receber o código de acesso via SMS!
-                  </p>
+              <Form ref={formRef} onSubmit={handleSubmit}>
+                <h1>Meus Pets</h1>
+                <p>
+                  Entre com o CPF utilizado para cadastrar os pets para ver
+                  todos os seus pets no sistema
+                </p>
 
-                  <Input
-                    name="cellphonenumber"
-                    icon={IoIosPhonePortrait}
-                    type="text"
-                    placeholder="Celular"
-                    value={cellphoneNumber}
-                    onChange={e => setCellphoneNumber(e.currentTarget.value)}
-                  />
-                  <Button type="submit">
-                    Enviar código de acesso
-                    <IoIosLogIn size={20} />
-                  </Button>
-                </Form>
-              ) : (
-                <Form ref={formRef} onSubmit={handleSubmitAccessCode}>
-                  <h1>Meus Pets</h1>
-                  <p>Entre com o código de acesso enviado para seu celular!</p>
-
-                  <Input
-                    name="accesscode"
-                    icon={IoIosText}
-                    type="number"
-                    placeholder="Código"
-                    value={accessCode}
-                    onChange={e => setAccessCode(e.currentTarget.value)}
-                  />
-
-                  <Button type="submit">
-                    Acessar
-                    <IoIosLogIn size={20} />
-                  </Button>
-                </Form>
-              )}
+                <Input
+                  name="cpf"
+                  icon={IoIosCard}
+                  type="text"
+                  placeholder="CPF (apenas números)"
+                  value={cpf}
+                  onChange={e => setCpf(e.currentTarget.value)}
+                />
+                <Button type="submit">
+                  Entrar
+                  <IoIosLogIn size={20} />
+                </Button>
+                <img src={myPetsLogin} alt="PetImage" />
+              </Form>
             </AnimationContainer>
           )}
         </Body>
       </Content>
-      {logoutConfirm && handleShowDialog()}
     </Container>
   );
 };

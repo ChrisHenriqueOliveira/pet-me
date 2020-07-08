@@ -69,17 +69,13 @@ export const ResultsContainer = styled.div`
 
 export const LoadingResultsContainer = styled.div`
   width: 100%;
-
-  h2 {
-    color: #000;
-    font-weight: 500;
-
-    margin-top: 32px;
-
+  display: flex;
+  justify-content: center;
+  
+  img {
     width: 100%;
-    text-align: center;
-
-    margin-bottom: 32px;
+    max-width: 300px;
+    align-self: center;
   }
 `;
 
