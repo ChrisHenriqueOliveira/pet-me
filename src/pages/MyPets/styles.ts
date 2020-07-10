@@ -16,7 +16,7 @@ export const Content = styled.div`
 export const Body = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 64px 0;
+  margin: 32px 0;
 
   @media only screen and (max-width: 1000px) {
     margin: 0 0 64px 0;
@@ -38,7 +38,7 @@ export const AnimationContainer = styled.div`
   width: 100%;
   max-width: 500px;
 
-  margin: 0 auto;
+  margin: 0 auto 32px auto;
 
   display: flex;
   flex-direction: column;

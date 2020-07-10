@@ -18,7 +18,7 @@ export const Body = styled.div`
   align-items: center;
   justify-content: space-between;
 
-  margin: 80px 0;
+  margin: 48px 0;
 
   img {
     width: 50%;
@@ -144,7 +144,7 @@ export const AnimationContainer = styled.div`
 `;
 
 export const AboutInfo = styled.div`
-  margin: 64px 0;
+  margin: 32px 0;
 
   animation: ${appearFromRight} 1s;
 

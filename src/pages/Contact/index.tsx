@@ -1,7 +1,5 @@
 import React from 'react';
 
-import Menu from '../../components/Menu';
-
 import { Container, Content, Body, AnimationContainer } from './styles';
 
 import img from '../../assets/petScreen4.svg';
@@ -10,7 +8,6 @@ const Contact: React.FC = () => {
   return (
     <Container>
       <Content>
-        <Menu />
         <Body>
           <AnimationContainer>
             <h1>Contato</h1>

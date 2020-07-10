@@ -5,7 +5,7 @@ import { IoIosPin, IoMdSearch, IoMdFemale, IoMdMale } from 'react-icons/io';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 
-import Menu from '../../components/Menu';
+import { Link } from 'react-router-dom';
 import Select from '../../components/Select';
 import Button from '../../components/Button';
 
@@ -126,7 +126,6 @@ const Search: React.FC = () => {
   return (
     <Container>
       <Content>
-        <Menu />
         <Body>
           <AnimationContainer>
             <h1>Selecione onde deseja buscar:</h1>
@@ -182,7 +181,7 @@ const Search: React.FC = () => {
                       <p>{item.idade}</p>
                     </div>
                     <p>{item.description}</p>
-                    <button type="button">Mais informações</button>
+                    <Link to="/pet">Mais informações</Link>
                   </PetItem>
                 ))}
               </LoadedResultsContainer>

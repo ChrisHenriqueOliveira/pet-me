@@ -6,6 +6,9 @@ interface MenuProps {
 
 export const TopMenu = styled.div`
   height: 150px;
+  max-width: 1280px;
+  width: 90%;
+  margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;

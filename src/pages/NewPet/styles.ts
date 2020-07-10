@@ -10,13 +10,13 @@ export const Content = styled.div`
   width: 90%;
   max-width: 1280px;
 
-  margin: 0 auto;
+  margin: 0 auto 32px auto;
 `;
 
 export const Body = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 64px 0;
+  margin: 32px 0;
 
   @media only screen and (max-width: 1000px) {
     margin: 0 0 64px 0;
@@ -37,18 +37,30 @@ const appearFromTop = keyframes`
 export const AnimationContainer = styled.div`
   width: 100%;
   max-width: 500px;
-
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
   margin: 0 auto;
 
   display: flex;
   flex-direction: column;
   align-items: center;
 
+  -webkit-box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.1);
+
   animation: ${appearFromTop} 1s;
 
-  > img {
-    margin-top: -100px;
-    max-width: 100%;
+  h1 {
+    font: 25px Roboto, sans-serif;
+    font-weight: 700;
+    color: #000;
+  }
+
+  img {
+    margin: 24px 0;
+    width: 70%;
   }
 
   form {
@@ -59,12 +71,6 @@ export const AnimationContainer = styled.div`
     align-items: center;
 
     width: 100%;
-    padding: 20px;
-    border-radius: 8px;
-
-    -webkit-box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.1);
-    -moz-box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.1);
-    box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.1);
 
     h1 {
       font: 25px Roboto, sans-serif;

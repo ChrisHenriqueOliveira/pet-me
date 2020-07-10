@@ -10,13 +10,13 @@ export const Content = styled.div`
   width: 90%;
   max-width: 1280px;
 
-  margin: 0 auto;
+  margin: 0 auto 32px auto;
 `;
 
 export const Body = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 64px 0;
+  margin: 32px 0;
 `;
 
 const appearFromTop = keyframes`
@@ -71,7 +71,7 @@ export const LoadingResultsContainer = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
-  
+
   img {
     width: 100%;
     max-width: 300px;
@@ -189,7 +189,11 @@ export const PetItem = styled.div`
     -webkit-box-orient: vertical;
   }
 
-  button {
+  a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
     margin-top: auto;
 
     background-color: #fff;

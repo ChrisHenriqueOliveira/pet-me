@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { FiLinkedin, FiGithub, FiInstagram, FiFacebook } from 'react-icons/fi';
-import Menu from '../../components/Menu';
 
 import {
   Container,
@@ -53,7 +52,6 @@ const AboutUs: React.FC = () => {
   return (
     <Container>
       <Content>
-        <Menu />
         <Body>
           <AnimationContainer>
             <h1>Sobre nós</h1>

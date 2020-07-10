@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import Menu from '../../components/Menu';
 import Button from '../../components/Button';
 
 import { Container, Content, Body, AnimationContainer } from './styles';
@@ -12,7 +11,6 @@ const SignIn: React.FC = () => {
   return (
     <Container>
       <Content>
-        <Menu />
         <Body>
           <AnimationContainer>
             <h2>Sentindo-se sozinho?</h2>
