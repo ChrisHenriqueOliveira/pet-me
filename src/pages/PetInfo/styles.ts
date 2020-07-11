@@ -56,7 +56,7 @@ export const AnimationContainer = styled.div`
 
     font-family: 'Roboto', serif;
     font-weight: 700;
-    font-size: 24px;
+    font-size: 32px;
     color: #838bc5;
   }
 
@@ -74,13 +74,13 @@ export const AnimationContainer = styled.div`
     }
   }
 
-  .previews {
+  .main-info {
     width: 100%;
     background-color: #fff;
     margin: 16px auto 0 auto;
 
     display: flex;
-    align-items: center;
+    align-items: flex-start;
 
     @media only screen and (max-width: 1000px) {
       flex-direction: column;
@@ -117,18 +117,69 @@ export const ImagePreview = styled.div`
 `;
 
 export const InfoPreview = styled.div`
+  display: flex;
+  flex-direction: column;
   width: 100%;
   max-width: 300px;
-  height: 400px;
+  min-height: 400px;
   margin-left: auto;
+  padding: 16px;
   background-color: #f0f2fd;
 
   -webkit-box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.1);
   -moz-box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.1);
   box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.1);
 
+  h1 {
+    font-family: 'Roboto', serif;
+    font-weight: 700;
+    font-size: 24px;
+    color: #838bc5;
+  }
+
+  .divider {
+    width: 100%;
+    border: 1px dashed #838bc5;
+    margin: 16px 0;
+  }
+
+  ul {
+    list-style-type: none;
+
+    li {
+      display: flex;
+      align-items: center;
+      margin-top: 8px;
+
+      svg {
+        color: #838bc5;
+      }
+
+      p {
+        margin: 0 0 0 8px;
+      }
+    }
+  }
+
+  .bottom-info {
+    margin-top: auto;
+
+    button {
+      svg {
+        margin: 0 8px 0 0;
+      }
+    }
+
+    p {
+      width: 100%;
+      text-align: center;
+    }
+  }
+
   @media only screen and (max-width: 1000px) {
     max-width: 100%;
+    min-height: 300px;
+
     height: 250px;
     margin: 16px auto 0 auto;
   }

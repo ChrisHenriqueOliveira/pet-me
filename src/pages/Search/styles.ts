@@ -89,7 +89,6 @@ export const LoadedResultsContainer = styled.div`
   justify-content: center;
   align-items: center;
 
-  margin-top: 32px;
   width: 100%;
 
   @media only screen and (max-width: 1350px) {
@@ -121,11 +120,12 @@ export const PetItem = styled.div`
   padding: 16px;
 
   border-radius: 10px;
+  border: 2px solid #838bc5;
 
-  transition: transform 0.2s;
+  transition: border-color 0.2s;
 
   &:hover {
-    transform: translateY(-10px);
+    border-color: #f0f2fd;
   }
 
   img {

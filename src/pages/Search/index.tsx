@@ -89,11 +89,12 @@ const Search: React.FC = () => {
 
   const handleSubmit = useCallback(
     async (data: NewSearchData) => {
-      const filteredPets = PetsData.filter(pet => {
-        return pet.city === data.ownercity;
-      });
+      // const filteredPets = PetsData.filter(pet => {
+      //   return pet.city === data.ownercity;
+      // });
 
-      filteredPets.length > 0 ? setPets(filteredPets) : setPets(null);
+      // filteredPets.length > 0 ? setPets(filteredPets) : setPets(null);
+      setPets(PetsData);
     },
     [PetsData],
   );
@@ -173,7 +174,7 @@ const Search: React.FC = () => {
             {pets !== null ? (
               <LoadedResultsContainer>
                 {pets.map(item => (
-                  <PetItem key={item.id}>
+                  <PetItem key={item.id} >
                     <img src={item.imagem} alt="PetImage" />
                     <h1>{item.nome}</h1>
                     <div className="genderAndAge">

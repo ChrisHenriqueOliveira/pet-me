@@ -12,6 +12,7 @@ export const Container = styled.div`
   border-top-right-radius: 8px;
 
   background-color: #838bc5;
+  border: 2px solid #f0f2fd;
 
   a {
     margin-left: 8px;
