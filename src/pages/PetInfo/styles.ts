@@ -130,17 +130,17 @@ export const InfoPreview = styled.div`
   -moz-box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.1);
   box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.1);
 
+  > div {
+    border-bottom: 2px dashed #838bc5;
+  }
+
   h1 {
+    margin-bottom: 8px;
+
     font-family: 'Roboto', serif;
     font-weight: 700;
     font-size: 24px;
     color: #838bc5;
-  }
-
-  .divider {
-    width: 100%;
-    border: 1px dashed #838bc5;
-    margin: 16px 0;
   }
 
   ul {
@@ -148,21 +148,31 @@ export const InfoPreview = styled.div`
 
     li {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       margin-top: 8px;
 
       svg {
+        margin-top: 1px;
+        min-width: 25px;
         color: #838bc5;
       }
 
       p {
         margin: 0 0 0 8px;
+
+        span {
+          font-weight: 700;
+        }
       }
     }
   }
 
   .bottom-info {
+    display: flex;
+    flex-direction: column;
+
     margin-top: auto;
+    border: 0;
 
     button {
       svg {
@@ -180,7 +190,6 @@ export const InfoPreview = styled.div`
     max-width: 100%;
     min-height: 300px;
 
-    height: 250px;
     margin: 16px auto 0 auto;
   }
 `;

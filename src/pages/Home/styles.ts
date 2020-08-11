@@ -58,23 +58,23 @@ export const AnimationContainer = styled.div`
 
   animation: ${appearFromRight} 1s;
 
-  h2 {
-    font: 24px Roboto, sans-serif;
-    font-weight: 400;
-  }
-
   h1 {
-    margin-top: 24px;
-
     font: 40px Roboto, sans-serif;
     font-weight: 700;
   }
 
-  p {
-    margin-top: 24px;
+  h2 {
+    margin-bottom: 16px;
 
     font: 24px Roboto, sans-serif;
-    font-weight: 300;
+    font-weight: 400;
+  }
+
+  p {
+    margin-top: 16px;
+
+    font: 20px Roboto, sans-serif;
+    font-weight: 400;
   }
 
   .buttons {

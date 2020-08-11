@@ -6,6 +6,7 @@ import Button from '../../components/Button';
 import { Container, Content, Body, AnimationContainer } from './styles';
 
 import img from '../../assets/petScreen1.svg';
+import Divider from '../../components/Divider';
 
 const Works: React.FC = () => {
   return (
@@ -15,6 +16,7 @@ const Works: React.FC = () => {
           <AnimationContainer>
             <h1>Como isso funciona?</h1>
             <h2>É muito simples!</h2>
+            <Divider />
             <p>
               Pessoas que estão interessadas em encontrar novos donos para seus
               pets registram seus animaizinhos na plataforma e pessoas que estao

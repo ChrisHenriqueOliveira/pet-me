@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Divider from '../../components/Divider';
+
 import { Container, Content, Body, AnimationContainer } from './styles';
 
 import img from '../../assets/petScreen4.svg';
@@ -12,6 +14,7 @@ const Contact: React.FC = () => {
           <AnimationContainer>
             <h1>Contato</h1>
             <h2>Possui algo para nos dizer?</h2>
+            <Divider />
             <p>
               Envie um e-mail para <span>contato@petme.com</span> contando-nos
               seu problema, sugestão ou história. Adoraríamos saber como esta

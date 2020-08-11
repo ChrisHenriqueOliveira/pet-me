@@ -6,6 +6,7 @@ import Button from '../../components/Button';
 import { Container, Content, Body, AnimationContainer } from './styles';
 
 import img from '../../assets/petScreen2.svg';
+import Divider from '../../components/Divider';
 
 const SignIn: React.FC = () => {
   return (
@@ -13,8 +14,9 @@ const SignIn: React.FC = () => {
       <Content>
         <Body>
           <AnimationContainer>
-            <h2>Sentindo-se sozinho?</h2>
             <h1>Encontre um Companheiro!</h1>
+            <h2>Sentindo-se sozinho?</h2>
+            <Divider />
             <p>
               Procure por pets em sua região, entre em contato com seus
               cuidadores e torne-o seu novo amigo!

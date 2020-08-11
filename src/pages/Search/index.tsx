@@ -174,7 +174,7 @@ const Search: React.FC = () => {
             {pets !== null ? (
               <LoadedResultsContainer>
                 {pets.map(item => (
-                  <PetItem key={item.id} >
+                  <PetItem key={item.id}>
                     <img src={item.imagem} alt="PetImage" />
                     <h1>{item.nome}</h1>
                     <div className="genderAndAge">

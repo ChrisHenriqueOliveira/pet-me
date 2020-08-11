@@ -58,23 +58,28 @@ export const AnimationContainer = styled.div`
 
   animation: ${appearFromRight} 1s;
 
-  h2 {
-    font: 24px Roboto, sans-serif;
-    font-weight: 400;
-  }
-
   h1 {
-    margin-top: 24px;
-
     font: 40px Roboto, sans-serif;
     font-weight: 700;
   }
 
-  p {
-    margin-top: 24px;
+  h2 {
+    margin-bottom: 16px;
 
     font: 24px Roboto, sans-serif;
-    font-weight: 300;
+    font-weight: 400;
+  }
+
+  p {
+    margin-top: 16px;
+
+    font: 20px Roboto, sans-serif;
+    font-weight: 400;
+
+    span {
+      color: #838bc5;
+      font-weight: 700;
+    }
   }
 
   .buttons {
@@ -180,22 +185,28 @@ export const AboutInfo = styled.div`
 
     .info {
       display: flex;
+      flex: 1;
       flex-direction: column;
 
+      padding: 16px;
+
+      > div {
+        border-color: #fff;
+      }
+
       p {
-        margin: 10px 0 8px 16px;
+        margin-bottom: 8px;
 
         font: 18px Roboto, sans-serif;
         font-weight: 500;
+        color: #fff;
       }
 
       .socialNetworks {
-        margin: 0 0 8px 16px;
-
         a {
           color: #fff;
           svg {
-            margin-right: 8px;
+            margin: 16px 8px 0 0;
 
             cursor: pointer;
 
@@ -206,6 +217,34 @@ export const AboutInfo = styled.div`
             }
           }
         }
+      }
+    }
+  }
+
+  @media only screen and (max-width: 450px) {
+    li {
+      img {
+        max-width: 120px;
+        max-height: 120px;
+      }
+    }
+  }
+
+  @media only screen and (max-width: 350px) {
+    li {
+      flex-direction: column;
+
+      &:hover {
+        transform: translateY(-8px);
+      }
+
+      img {
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        border-bottom-left-radius: 0px;
+
+        max-width: 500px;
+        max-height: 500px;
       }
     }
   }

@@ -2,19 +2,20 @@ import React from 'react';
 
 import { FiLinkedin, FiGithub, FiInstagram, FiFacebook } from 'react-icons/fi';
 
+import { borderColor } from 'polished';
 import {
   Container,
   Content,
   Body,
   AnimationContainer,
   AboutInfo,
-  Divider,
 } from './styles';
 
 import img from '../../assets/petScreen3.svg';
 
 import christian from '../../assets/christian.jpg';
 import guilherme from '../../assets/guilherme.jpg';
+import Divider from '../../components/Divider';
 
 interface Members {
   id: number;
@@ -56,6 +57,7 @@ const AboutUs: React.FC = () => {
           <AnimationContainer>
             <h1>Sobre nós</h1>
             <h2>Gostou do nosso projeto?</h2>
+            <Divider />
             <p>
               Somos estudantes de ciências da computação e desenvolvemos esse
               projeto como TCC do nosso curso.
@@ -65,7 +67,9 @@ const AboutUs: React.FC = () => {
               redes sociais que estarão disponíveis nessa página e mande sua
               mensagem.
             </p>
-            <p>Att. Christian e Guilherme</p>
+            <p>
+              Att. <span>Christian e Guilherme</span>
+            </p>
           </AnimationContainer>
 
           <img src={img} alt="img1" />

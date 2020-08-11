@@ -21,7 +21,7 @@ const MyPets: React.FC = () => {
   const history = useHistory();
   const formRef = useRef<FormHandles>(null);
 
-  const [cpf, setCpf] = useState('');
+  const [email, setEmail] = useState('');
 
   const [logged, setLogged] = useState(false);
 
@@ -30,7 +30,9 @@ const MyPets: React.FC = () => {
       formRef.current?.setErrors({});
 
       const schema = Yup.object().shape({
-        cpf: Yup.number().required('CPF é obrigatório'),
+        email: Yup.string()
+          .required('E-mail é obrigatório')
+          .email('Digite um formato válido de e-mail'),
       });
 
       await schema.validate(data, { abortEarly: false });
@@ -64,17 +66,17 @@ const MyPets: React.FC = () => {
               <Form ref={formRef} onSubmit={handleSubmit}>
                 <h1>Meus Pets</h1>
                 <p>
-                  Entre com o CPF utilizado para cadastrar os pets para ver
+                  Entre com o E-mail utilizado para cadastrar os pets para ver
                   todos os seus pets no sistema
                 </p>
 
                 <Input
-                  name="cpf"
+                  name="email"
                   icon={IoIosCard}
-                  type="text"
-                  placeholder="CPF (apenas números)"
-                  value={cpf}
-                  onChange={e => setCpf(e.currentTarget.value)}
+                  type="string"
+                  placeholder="E-mail"
+                  value={email}
+                  onChange={e => setEmail(e.currentTarget.value)}
                 />
                 <Button type="submit">
                   Entrar
