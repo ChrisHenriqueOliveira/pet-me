@@ -92,7 +92,7 @@ export const ImagePreview = styled.div`
   flex: 1;
   display: flex;
   align-items: center;
-  margin-right: 32px;
+  margin-right: 16px;
   background-color: #f0f2fd;
   border-radius: 8px;
 

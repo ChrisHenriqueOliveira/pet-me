@@ -71,6 +71,8 @@ export const AnimationContainer = styled.div`
       font: 25px Roboto, sans-serif;
       font-weight: 700;
       color: #000;
+
+      margin-bottom: 8px;
     }
 
     p {

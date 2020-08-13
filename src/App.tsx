@@ -13,7 +13,7 @@ const App: React.FC = () => {
     <BrowserRouter>
       <Menu />
       <Routes />
-      <Footer />
+      {/* <Footer /> */}
       <GlobalStyle />
     </BrowserRouter>
   );

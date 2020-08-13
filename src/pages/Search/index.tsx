@@ -9,12 +9,6 @@ import { Link } from 'react-router-dom';
 import Select from '../../components/Select';
 import Button from '../../components/Button';
 
-import pet1 from '../../assets/pet1.jpg';
-import pet2 from '../../assets/pet2.jpg';
-// import pet3 from '../../assets/pet3.jpg';
-// import pet4 from '../../assets/pet4.jpg';
-// import pet5 from '../../assets/pet5.jpg';
-
 import petAdoptionSearch from '../../assets/petAdoptionSearch.svg';
 
 import {
@@ -28,14 +22,23 @@ import {
   PetItem,
 } from './styles';
 
+import { PetsData } from '../../utils/animalsMockData';
+
 interface PetInfo {
   id: string;
-  imagem: string;
-  nome: string;
-  sexo: string;
-  idade: string;
-  description: string;
-  city: string;
+  ownerName: string;
+  ownerNumber: string;
+  petImage: string;
+  petName: string;
+  petSize: string;
+  petGender: string;
+  petSpecies: string;
+  petAge: string;
+  petDescription: string;
+  stateId: string;
+  cityId: string;
+  stateName: string;
+  cityName: string;
 }
 interface NewSearchData {
   ownercity: string;
@@ -56,29 +59,6 @@ const Search: React.FC = () => {
   const [selectedState, setSelectedState] = useState('');
   const [selectedCity, setSelectedCity] = useState('');
 
-  const PetsData: PetInfo[] = [
-    {
-      id: '1',
-      imagem: pet1,
-      nome: 'Pet 1',
-      sexo: 'Macho',
-      idade: '02 meses',
-      description:
-        'Usuário de ossos e impiedoso perante os aquáticos eroedores enquanto navega pelos rios em busca da gata certa.',
-      city: '120001305',
-    },
-    {
-      id: '2',
-      imagem: pet2,
-      nome: 'Pet 2',
-      sexo: 'Femea',
-      idade: '02 meses',
-      description:
-        'Usuário de ossos e impiedoso perante os aquáticos eroedores enquanto navega pelos rios em busca da gata certa.',
-      city: '352590405',
-    },
-  ];
-
   useEffect(() => {
     fetch(
       'https://servicodados.ibge.gov.br/api/v1/localidades/estados?orderBy=nome',
@@ -87,17 +67,14 @@ const Search: React.FC = () => {
       .then(data => setStates(data));
   }, []);
 
-  const handleSubmit = useCallback(
-    async (data: NewSearchData) => {
-      // const filteredPets = PetsData.filter(pet => {
-      //   return pet.city === data.ownercity;
-      // });
+  const handleSubmit = useCallback(async (data: NewSearchData) => {
+    // const filteredPets = PetsData.filter(pet => {
+    //   return pet.city === data.ownercity;
+    // });
 
-      // filteredPets.length > 0 ? setPets(filteredPets) : setPets(null);
-      setPets(PetsData);
-    },
-    [PetsData],
-  );
+    // filteredPets.length > 0 ? setPets(filteredPets) : setPets(null);
+    setPets(PetsData);
+  }, []);
 
   const handleStateChange = (
     event: React.ChangeEvent<{ value: unknown }>,
@@ -175,14 +152,20 @@ const Search: React.FC = () => {
               <LoadedResultsContainer>
                 {pets.map(item => (
                   <PetItem key={item.id}>
-                    <img src={item.imagem} alt="PetImage" />
-                    <h1>{item.nome}</h1>
+                    <img src={item.petImage} alt="PetImage" />
+                    <h1>{item.petName}</h1>
                     <div className="genderAndAge">
-                      {item.sexo === 'Macho' ? <IoMdMale /> : <IoMdFemale />}
-                      <p>{item.idade}</p>
+                      {item.petGender === 'Macho' ? (
+                        <IoMdMale />
+                      ) : (
+                        <IoMdFemale />
+                      )}
+                      <p>{item.petAge}</p>
                     </div>
-                    <p>{item.description}</p>
-                    <Link to="/pet">Mais informações</Link>
+                    <p>{item.petDescription}</p>
+                    <Link to={`/pet/${item.id}`} target="_blank">
+                      Mais informações
+                    </Link>
                   </PetItem>
                 ))}
               </LoadedResultsContainer>

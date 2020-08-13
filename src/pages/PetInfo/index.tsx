@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useRouteMatch } from 'react-router-dom';
 
 import {
   IoIosPerson,
@@ -21,65 +21,106 @@ import {
 import Button from '../../components/Button';
 import Divider from '../../components/Divider';
 
+import { PetsData } from '../../utils/animalsMockData';
+
+interface PetParams {
+  id: string;
+}
+
+interface PetInfo {
+  id: string;
+  ownerName: string;
+  ownerNumber: string;
+  petImage: string;
+  petName: string;
+  petSize: string;
+  petGender: string;
+  petSpecies: string;
+  petAge: string;
+  petDescription: string;
+  stateId: string;
+  cityId: string;
+  stateName: string;
+  cityName: string;
+}
+
 const PetInfo: React.FC = () => {
   const [viewNumber, setViewNumber] = useState(false);
 
-  useEffect(() => {}, []);
+  const [petInfo, setPetInfo] = useState<PetInfo[] | null>();
+
+  const { params } = useRouteMatch<PetParams>();
+
+  useEffect(() => {
+    const filteredPets = PetsData.filter((pet: PetInfo) => {
+      return pet.id === params.id;
+    });
+
+    filteredPets.length > 0 ? setPetInfo(filteredPets) : setPetInfo(null);
+  }, [params.id]);
 
   return (
     <Container>
       <Content>
         <Body>
           <AnimationContainer>
-            <h1> Vira-lata Caramelo </h1>
-            <p>
-              Esse pet está morando em <strong>Jundiaí - São Paulo</strong>
-            </p>
-            <div className="main-info">
-              <ImagePreview>
-                <img src={pet2} alt="PetImage" />
-              </ImagePreview>
-              <InfoPreview>
-                <h1>Informações gerais:</h1>
-                <Divider />
-                <ul>
-                  <li>
-                    <IoIosPerson />
-                    <p>
-                      <span>Dono:</span> Christian Henrique
-                    </p>
-                  </li>
-                  <li>
-                    <IoIosPaw />
-                    <p>
-                      <span>Espécie:</span> Cachorro
-                    </p>
-                  </li>
-                  <li>
-                    <IoIosPaw />
-                    <p>
-                      <span>Porte:</span> Grande
-                    </p>
-                  </li>
-                  <li>
-                    <IoIosToday />
-                    <p>
-                      <span>Descrição:</span> Usuário de ossos e impiedoso
-                      perante os aquáticos eroedores enquanto navega pelos rios
-                      em busca da gata certa.
-                    </p>
-                  </li>
-                </ul>
+            {petInfo && (
+              <>
+                <h1> {petInfo[0].petName} </h1>
+                <p>
+                  Esse pet está morando em
+                  <strong>
+                    {' '}
+                    {petInfo[0].cityName} - {petInfo[0].stateName}
+                  </strong>
+                </p>
+                <div className="main-info">
+                  <ImagePreview>
+                    <img src={petInfo[0].petImage} alt="PetImage" />
+                  </ImagePreview>
+                  <InfoPreview>
+                    <h1>Informações gerais:</h1>
+                    <Divider />
+                    <ul>
+                      <li>
+                        <IoIosPerson />
+                        <p>
+                          <span>Dono:</span> {petInfo[0].ownerName}
+                        </p>
+                      </li>
+                      <li>
+                        <IoIosPaw />
+                        <p>
+                          <span>Espécie:</span> {petInfo[0].petSpecies}
+                        </p>
+                      </li>
+                      <li>
+                        <IoIosPaw />
+                        <p>
+                          <span>Porte:</span> {petInfo[0].petSize}
+                        </p>
+                      </li>
+                      <li>
+                        <IoIosToday />
+                        <p>
+                          <span>Descrição:</span> {petInfo[0].petDescription}
+                        </p>
+                      </li>
+                    </ul>
 
-                <div className="bottom-info">
-                  <Button type="button" onClick={() => setViewNumber(true)}>
-                    <IoIosPhonePortrait size={20} />
-                    {viewNumber ? '11-95985-2552' : 'Visualizar contato'}
-                  </Button>
-                  <p>Adicionado em: 24/05/2020</p>
+                    <div className="bottom-info">
+                      <Button type="button" onClick={() => setViewNumber(true)}>
+                        <IoIosPhonePortrait size={20} />
+                        {viewNumber
+                          ? `${petInfo[0].ownerNumber}`
+                          : 'Visualizar contato'}
+                      </Button>
+                      <p>Adicionado em: 24/05/2020</p>
+                    </div>
+                  </InfoPreview>
                 </div>
-              </InfoPreview>
-            </div>
+              </>
+            )}
           </AnimationContainer>
         </Body>
       </Content>

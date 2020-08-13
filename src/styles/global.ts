@@ -30,4 +30,8 @@ export default createGlobalStyle`
   button, a {
     cursor: pointer;
   }
+
+  html, body, #root {
+    height: 100%
+  }
 `;

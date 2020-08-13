@@ -16,6 +16,7 @@ import myPetsLogin from '../../assets/myPetsLogin.svg';
 import myPetsEmpty from '../../assets/myPetsEmpty.svg';
 
 import { Container, Content, Body, AnimationContainer } from './styles';
+import Divider from '../../components/Divider';
 
 const MyPets: React.FC = () => {
   const history = useHistory();
@@ -65,6 +66,7 @@ const MyPets: React.FC = () => {
             <AnimationContainer>
               <Form ref={formRef} onSubmit={handleSubmit}>
                 <h1>Meus Pets</h1>
+                <Divider />
                 <p>
                   Entre com o E-mail utilizado para cadastrar os pets para ver
                   todos os seus pets no sistema
