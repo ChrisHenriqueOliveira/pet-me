@@ -23,23 +23,8 @@ import {
 } from './styles';
 
 import { PetsData } from '../../utils/animalsMockData';
+import { PetCard, PetProps } from '../../components/PetCard';
 
-interface PetInfo {
-  id: string;
-  ownerName: string;
-  ownerNumber: string;
-  petImage: string;
-  petName: string;
-  petSize: string;
-  petGender: string;
-  petSpecies: string;
-  petAge: string;
-  petDescription: string;
-  stateId: string;
-  cityId: string;
-  stateName: string;
-  cityName: string;
-}
 interface NewSearchData {
   ownercity: string;
   ownerstate: string;
@@ -54,7 +39,7 @@ const Search: React.FC = () => {
 
   const [states, setStates] = useState<LocationProperties[]>([]);
   const [cities, setCities] = useState<LocationProperties[]>([]);
-  const [pets, setPets] = useState<PetInfo[] | null>(null);
+  const [pets, setPets] = useState<PetProps[] | null>(null);
 
   const [selectedState, setSelectedState] = useState('');
   const [selectedCity, setSelectedCity] = useState('');
@@ -151,22 +136,7 @@ const Search: React.FC = () => {
             {pets !== null ? (
               <LoadedResultsContainer>
                 {pets.map(item => (
-                  <PetItem key={item.id}>
-                    <img src={item.petImage} alt="PetImage" />
-                    <h1>{item.petName}</h1>
-                    <div className="genderAndAge">
-                      {item.petGender === 'Macho' ? (
-                        <IoMdMale />
-                      ) : (
-                        <IoMdFemale />
-                      )}
-                      <p>{item.petAge}</p>
-                    </div>
-                    <p>{item.petDescription}</p>
-                    <Link to={`/pet/${item.id}`} target="_blank">
-                      Mais informações
-                    </Link>
-                  </PetItem>
+                  <PetCard key={item.id} petInfo={item} />
                 ))}
               </LoadedResultsContainer>
             ) : (

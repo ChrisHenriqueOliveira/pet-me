@@ -1,6 +1,15 @@
 import React, { useRef, useState, useCallback } from 'react';
 
-import { IoIosLogIn, IoIosCard } from 'react-icons/io';
+import {
+  IoIosLogIn,
+  IoIosCard,
+  IoIosMail,
+  IoMdMale,
+  IoMdFemale,
+  IoIosTrash,
+  IoMdTrash,
+  IoMdCreate,
+} from 'react-icons/io';
 
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
@@ -15,16 +24,30 @@ import Input from '../../components/Input';
 import myPetsLogin from '../../assets/myPetsLogin.svg';
 import myPetsEmpty from '../../assets/myPetsEmpty.svg';
 
-import { Container, Content, Body, AnimationContainer } from './styles';
+import {
+  Container,
+  Content,
+  Body,
+  AnimationContainer,
+  LoadedResultsContainer,
+} from './styles';
+
+import { PetsData } from '../../utils/animalsMockData';
 import Divider from '../../components/Divider';
+import { PetProps } from '../../components/PetCard';
 
 const MyPets: React.FC = () => {
   const history = useHistory();
   const formRef = useRef<FormHandles>(null);
 
   const [email, setEmail] = useState('');
+  const [pets, setPets] = useState<PetProps[] | null>(PetsData);
 
   const [logged, setLogged] = useState(false);
+
+  const handlePets = useCallback(() => {
+    setPets(PetsData);
+  }, []);
 
   const handleSubmit = useCallback(async data => {
     try {
@@ -43,6 +66,7 @@ const MyPets: React.FC = () => {
       //   password: data.password,
       // });
 
+      handlePets();
       setLogged(true);
     } catch (err) {
       if (err instanceof Yup.ValidationError) {
@@ -60,7 +84,39 @@ const MyPets: React.FC = () => {
           {logged ? (
             <AnimationContainer>
               <h1>Meus Pets</h1>
-              <img src={myPetsEmpty} alt="PetImage" />
+              {pets !== null ? (
+                <LoadedResultsContainer>
+                  <ul>
+                    {pets.map(item => (
+                      <li key={item.id}>
+                        <img src={item.petImage} alt="Pet" />
+                        <div className="main-info">
+                          <h1>{item.petName}</h1>
+                          <div className="genderAndAge">
+                            {item.petGender === 'Macho' ? (
+                              <IoMdMale />
+                            ) : (
+                              <IoMdFemale />
+                            )}
+                            <p>{item.petAge}</p>
+                          </div>
+                          <p>{item.petDescription}</p>
+                        </div>
+                        <div className="buttons-control">
+                          <button type="button">
+                            <IoMdCreate size={25} />
+                          </button>
+                          <button type="button">
+                            <IoMdTrash size={25} />
+                          </button>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                </LoadedResultsContainer>
+              ) : (
+                <img src={myPetsEmpty} alt="PetImage" />
+              )}
             </AnimationContainer>
           ) : (
             <AnimationContainer>
@@ -74,7 +130,7 @@ const MyPets: React.FC = () => {
 
                 <Input
                   name="email"
-                  icon={IoIosCard}
+                  icon={IoIosMail}
                   type="string"
                   placeholder="E-mail"
                   value={email}
